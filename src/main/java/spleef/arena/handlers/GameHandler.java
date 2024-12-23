@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.HashSet;
+import java.util.ArrayList;
+
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -46,6 +49,7 @@ import spleef.signs.editor.SignEditor;
 import spleef.utils.Bars;
 import spleef.utils.TitleMsg;
 import spleef.utils.Utils;
+import spleef.events.RewardWinnerEvent;
 
 public class GameHandler {
 
@@ -64,6 +68,36 @@ public class GameHandler {
 	}
 
 	private int leavetaskid;
+    private int rewardTaskId; // Variable to store the task ID for the reward loop.
+
+	// Add the method to start the reward loop.
+    private void startRewardingPlayers() {
+        rewardTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+            @Override
+            public void run() {
+                rewardPlayersInArena();
+            }
+        }, 0, 1200L); // Adjust the delay (in ticks) as needed (1200L = 60 seconds)
+    }
+
+    // Add the method to stop the reward loop.
+    private void stopRewardingPlayers() {
+        Bukkit.getScheduler().cancelTask(rewardTaskId);
+    }
+
+    // Method to reward players who are alive in the arena.
+    private void rewardPlayersInArena() {
+		HashSet<Player> playersInArenaSet = arena.getPlayersManager().getPlayersCopy(); // Fetch player set
+		List<Player> playersInArena = new ArrayList<>(playersInArenaSet); // Convert to List
+		for (Player player : playersInArena) {
+			if (!player.isDead()) {
+				// Example of rewarding the player
+				plugin.getServer().getPluginManager().callEvent(new RewardWinnerEvent(player, arena));
+				arena.getStructureManager().getRewards().rewardPlayer(player, 1); // Assuming this method exists
+			}
+		}
+	}
+
 
 	public void startArenaAntiLeaveHandler() {
 		leavetaskid = Bukkit.getScheduler().scheduleSyncRepeatingTask(
@@ -233,6 +267,8 @@ public class GameHandler {
 		}
 		signEditor.modifySigns(arena.getArenaName());
 
+		startRewardingPlayers(); // Start rewarding players who are alive
+
 		timeremaining = limit * 20;
 		arena.getScoreboardHandler().createPlayingScoreBoard();
 		arenahandler = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
@@ -294,6 +330,7 @@ public class GameHandler {
 			arena.getScoreboardHandler().removeScoreboard(player);
 			arena.getPlayerHandler().leavePlayer(player, "", "");
 		}
+		stopRewardingPlayers(); // Stop rewarding players when the arena ends
 		lostPlayers = 0;
 		timeremaining = 0;
 		forceStartByCmd = false;

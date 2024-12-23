@@ -21,7 +21,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
-
 import spleef.Spleef;
 import spleef.arena.Arena;
 import spleef.utils.FormattingCodesParser;

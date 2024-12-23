@@ -11,39 +11,39 @@ special:
   UseBossBar: true
   #
   # set the bossbar color, or have random colors
-  BossBarColor: RANDOM
+  BossBarColor: GREEN
   #
   # use splash titles for join/leave
   UseTitle: true
   #
   # use scoreboard to display in-game stats
-  UseScoreboard: true
+  UseScoreboard: false
   #
   # using permission "spleef.doublejumps.n" where n is an integer will limit the number of doublejumps
   # a player will receive up to the max allowed. Applies to free and shop doublejumps
   UseDoubleJumpPermissions: false
   #
   # check for new version of Spleef_reloaded on SpigotMC.org
-  CheckForNewVersion: true
+  CheckForNewVersion: false
   #
   # enable metrics (bStats)
-  Metrics: true
+  Metrics: false
 #
 # use the player's exp bar to display the countdown and/or time remaining
 usexpbar:
-  countdown: true
-  timelimit: true
+  countdown: false
+  timelimit: false
 #
 # use player's rank in chat messages
 UseRankInChat:
   enabled: false
-  usegroup: true
+  usegroup: false
   groupcolormeta: false
   useprefix: false
 #
 # in-game shop configuration
 shop:
-  enabled: true
+  enabled: false
   name: '&6&lSpleef &f&lSHOP'
   size: 27
   doublejump:
@@ -95,7 +95,7 @@ invitationmessage:
 # if enabled players can create and join Spleef parties
 # alternatively, the AlessioDP Parties plugin can be used
 parties:
-  enabled: true
+  enabled: false
   usePartiesPlugin: false
 #
 # configure arena join menu
@@ -154,37 +154,37 @@ doublejumps:
 # set hotbar items while waiting for arena start
 items:
   vote:
-    use: true
+    use: false
     material: DIAMOND
     name: '&2&lVote'
     slot: 0
   info:
-    use: true
+    use: false
     material: EMERALD
     name: '&2&lInfo'
     slot: 1
   shop:
-    use: true
+    use: false
     material: NETHER_STAR
     name: '&2&lShop'
     slot: 2
   stats:
-    use: true
+    use: false
     material: PLAYER_HEAD
     name: '&2&lStats'
     slot: 3
   leave:
-    use: true
+    use: false
     material: GREEN_BED
     name: '&2&lLeave'
     slot: 8
   heads:
-    use: true
+    use: false
     material: GLOWSTONE_DUST
     name: '&e&lHeadsPlus'
     slot: 4
   tracker:
-    use: true
+    use: false
     material: COMPASS
     name: '&e&lPlayer Tracker'
     slot: 5
@@ -194,12 +194,12 @@ items:
     name: '&e&lDoublejump'
     slot: 5
   tool:
-    use: true
+    use: false
     material: DIAMOND_SHOVEL
     name: ''
     slot: 0
   snowball:
-    use: true
+    use: false
     material: SNOWBALL
     name: ''
     knockback: 1.0
@@ -308,7 +308,7 @@ currency:
 #
 # should a player's inventory be dropped if the player dies in the arena
 ondeath:
-  dropitems: true
+  dropitems: false
 #
 # number of seconds after game starts before blocks start to break
 onstart:
@@ -316,14 +316,14 @@ onstart:
 #
 # should a player's hunger and health bars be filled on joining the arena
 onjoin:
-  fillhunger: true
+  fillhunger: false
   fillhealth: false
 #
 # setting this to true will prevent arrows being picked up and re-used
-removearrows: false
+removearrows: true
 #
 # disable player collisions
-disablecollisions: false
+disablecollisions: true
 #
 # specify language file to use from those supplied with the plugin
 language: en-GB

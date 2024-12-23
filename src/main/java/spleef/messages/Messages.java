@@ -29,7 +29,7 @@ import spleef.utils.FormattingCodesParser;
 
 public class Messages {
 
-	public static String spprefix = "&7[&6Spleef_reloaded&7]";
+	public static String spprefix = "&7[&aSpleef-Drip&7]";
 	public static String menutitle = "&1Spleef_reloaded Arenas";
 	public static String menuarenaname = "&a{ARENA}";
 	public static String menutext = "&5Players: &6{PS}/{MPS}";

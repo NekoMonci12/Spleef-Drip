@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -224,7 +225,7 @@ public class PlayerHandler {
 		}
 		return loc != null ? loc : arena.getStructureManager().getPrimarySpawnPoint();
 	}
-
+	
 	/**
 	 * Teleport the player to an arena spawn point.
 	 * Store the player data and put the arena items into the hotbar.
@@ -551,6 +552,7 @@ public class PlayerHandler {
 		}
 
 		// reward players before restoring gamemode
+		/*
 		if (winner) {
 			plugin.getServer().getPluginManager().callEvent(new RewardWinnerEvent(player, arena));
 			arena.getStructureManager().getRewards().rewardPlayer(player, 1);
@@ -563,6 +565,7 @@ public class PlayerHandler {
 				}
 			});
 		}
+		*/
 
 		plugin.getPData().restorePlayerGameMode(player);
 		player.updateInventory();
@@ -959,7 +962,7 @@ public class PlayerHandler {
 		plugin.getPData().restorePlayerArmor(player);
 		plugin.getPData().restorePlayerInventory(player);
 		plugin.getPData().restorePlayerLevel(player);
-		player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 80, 80, true));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 80, 80, true));
 		if (plugin.getConfig().getBoolean("special.UseScoreboard")) {
 			plugin.getScoreboardManager().restorePrejoinScoreboard(player);
 		}
